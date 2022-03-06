@@ -1,6 +1,5 @@
-import React, {useContext} from "react";
+import React from "react";
 import Row from "./Row";
-import {InputContext} from "./InputContext";
 
 const RowList = () =>{
     const components= [];

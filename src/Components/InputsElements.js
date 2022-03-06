@@ -12,7 +12,6 @@ const InputsElements = ( { checkEnteredNum, disabled }  ) => {
     useEffect( () => {
         if (startIsClicked===1) {
             setEnteredDigits(['','','',''])
-            console.log(startIsClicked)
         }
     },[setStartIsClicked]);
 
