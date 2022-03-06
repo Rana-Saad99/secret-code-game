@@ -1,5 +1,4 @@
-import React, {useContext} from "react";
-import {InputContext} from "./InputContext";
+import React from "react";
 import Circle from "./Circle";
 const CirclesList = ({circles}) => {
     return(

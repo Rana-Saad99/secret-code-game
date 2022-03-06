@@ -1,29 +1,41 @@
-import React, {Fragment, useContext, useState} from "react";
+import React, {Fragment, useContext, useEffect, useState} from "react";
 import {InputContext} from "./InputContext";
 
 
-const InputsElements = ( { checkEnteredNum, disabled,index }  ) => {
+const InputsElements = ( { checkEnteredNum, disabled }  ) => {
 
-    const {disable, setDisable ,setEnteredNum} = useContext(InputContext);
-    const [enteredDigits,setEnteredDigits] = useState([]);
-   // let x = disable;
-    //console.log(x)
-    const onClickButton = () =>{
+    const {disable, setDisable ,setEnteredNum,startIsClicked,setStartIsClicked} = useContext(InputContext);
+    const [enteredDigits,setEnteredDigits] = useState(['','','','']);
+    const digits= ['','','',''];
+
+
+    useEffect( () => {
+        if (startIsClicked===1) {
+            setEnteredDigits(['','','',''])
+            console.log(startIsClicked)
+        }
+    },[setStartIsClicked]);
+
+    const onClickButton = () => {
         checkEnteredNum(enteredDigits);
-        setEnteredNum(enteredDigits);
+        setEnteredNum([...enteredDigits]);
         setDisable(disable + 1);
     }
+    const onChangeHandler =(event,i)=>{
+        const x = [...enteredDigits];
+           x[i]=(event.target.value)
+        setEnteredDigits(x)
+    }
     return(
-        <Fragment>
         <div  className={"elements"}>
-            <input type="text"  maxLength="1" size="2" disabled={disabled}   onChange={(event => setEnteredDigits([...enteredDigits,event.target.value]))}  />
-            <input type="text"  maxLength="1" size="2" disabled={disabled}   onChange={(event => setEnteredDigits([...enteredDigits,event.target.value]))}  />
-            <input type="text"  maxLength="1" size="2" disabled={disabled}   onChange={(event => setEnteredDigits([...enteredDigits,event.target.value]))}  />
-            <input type="text"  maxLength="1" size="2" disabled={disabled}   onChange={(event => setEnteredDigits([...enteredDigits,event.target.value]))}  />
+            {digits.map((x,index)=>{
+                return( <input type="text"  maxLength="1" size="2" disabled={disabled} onChange={event => onChangeHandler(event,index)}  value={enteredDigits[index]}/>)
+            })}
             <button disabled={disabled} className={"button-style"} onClick={onClickButton} >Check</button>
         </div>
-        </Fragment>
+
     );
-    //value={(disable === 1)?  " " : enteredNum[index[0]]}
+
+
 }
 export default InputsElements;

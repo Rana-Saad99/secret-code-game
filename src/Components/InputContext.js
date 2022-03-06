@@ -1,17 +1,19 @@
 import React, {createContext, useState} from "react";
 export  const InputContext = createContext();
 const InputContextProvider = (props) => {
-    const [randomNumber,setRandomNumber ] = useState('');
+    const [randomNumber, setRandomNumber ] = useState('');
     const [disable, setDisable] = useState(-1);
-    const [enteredNum,setEnteredNum] = useState([]);
-    const [preventWriting,setPreventWriting]= useState()
+    const [enteredNum, setEnteredNum] = useState([]);
+    const [preventWriting, setPreventWriting]= useState();
+    const [startIsClicked, setStartIsClicked]= useState(0);
+
+    console.log(startIsClicked)
     const generateNumber = () => {
            setRandomNumber(Math.floor(1000 + Math.random() * 9000).toString()) ;
            setDisable(0)
            setPreventWriting(false);
-           //setEnteredNum(["0","0","0","0"]);
+           setStartIsClicked(1);
     }
-
     return(
         <InputContext.Provider value={{
             generateNumber,
@@ -22,7 +24,8 @@ const InputContextProvider = (props) => {
             setDisable,
             preventWriting,
             setPreventWriting,
-
+            startIsClicked,
+            setStartIsClicked
         }} >
             {props.children}
             </InputContext.Provider>

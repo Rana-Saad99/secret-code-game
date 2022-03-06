@@ -9,7 +9,6 @@ const  Row = ({index}) =>{
 
     const checkEnteredNum =(enteredNum)=> {
         let generatedNumDigits = ("" + randomNumber).split("");
-        console.log(enteredNum)
         const colorsList = [];
         enteredNum.map((digit, index) => {
             generatedNumDigits.includes(digit) ? generatedNumDigits[index].includes(digit) ? colorsList[index] = "blue" :
@@ -17,14 +16,13 @@ const  Row = ({index}) =>{
                 colorsList[index] = "";
         })
         setCirclesColor(colorsList.sort())
-        console.log(colorsList)
     }
 
     return(
 
             <div className={"single-try"}>
                 <InputsElements disabled={index !== (disable)} index={index} checkEnteredNum={checkEnteredNum} />
-                <CirclesList circles={circlesColor}/>
+                {(disable > 0) && <CirclesList circles={circlesColor}/>}
             </div>
 
 )
