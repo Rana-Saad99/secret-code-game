@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Row from "./Components/Row";
+import React from "react";
+import Start from "./Components/Start";
+import InputContextProvider from "./Components/InputContext";
+import RowList from "./Components/RowList";
+import GuessCodeContent from "./Components/GuessCodeContent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <InputContextProvider>
+        <div className="App">
+          <header className="App-header">
+            <h1> Find The Secret Code</h1>
+
+            <GuessCodeContent/>
+
+          </header>
+        </div>
+      </InputContextProvider>
   );
 }
 
